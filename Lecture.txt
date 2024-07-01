@@ -1,0 +1,255 @@
+Django - это высокоуровневый фреймворк для веб-разработки на языке
+Python, он позволяет создавать безопасные и поддерживаем приложения,
+в нем уже есть готовые решения самых популярных задач для веб-приложения
+(админка, безопасность, структура проекта, и многое другое)
+
+Django использует архитектурный шаблон Model-Template-View (MTV), который
+является вариантом модели (MVC - Model-View-Controller). Это помогает
+разделить логику на приложения, пользовательский интерфейс и данные.
+
+Django предоставляет множество встроенных инструментов и библиотек,
+которые ускоряют процесс разработки.
+Нампример ORM (Object-Relational-Mapping).
+
+
+Команды Django :
+Команда для создания нового проекта:
+django-admin startproject <name_project>
+Команда для создания нового приложения:
+python manage.py startapp <app_name>
+Команда для запуска сервера:
+python manage.py runserver
+Команда для создания новых миграций на основе изменений моделей:
+python manage.py makemigrations
+Команда для применения миграций и синхронизации базы данных:
+python manage.py migrate
+
+
+Django Project
+Это контейнер для всех настроек и приложений (apps) веб-сайта. Проект
+включает в себя файлы конфигурации, такие как settings.py, urls.py, и
+другие.
+
+Django App
+Самостоятельный модуль или компонент внутри проекта Django,
+предназначенный для выполнения определенной задачи. Приложение может
+быть использовано в нескольких проектах
+
+Model (модель)
+Класс в Django, который определяет структуру данных. Каждая модель обычно
+имеет свою таблицу в базе данных.
+
+View (представление)
+Функция или класс в Django, который принимает веб-запрос и возращает
+веб-ответ (например, HTML-страницу или JSON-данные).
+
+URL-конфигурация (URL Configuration)
+Модуль в Django, который определяет маршуты URL-ов веб-приложения и
+указывает, какие представления должны быть вызваны для обработки этих
+URL-ов.
+
+Template(Шаблон)
+Файл, который определяет структуру и оформление HTML-страниц, которые
+будут возращаться пользователю. Шаблоны могут включать динамическое
+содержимое, передеваемое из представлений (context).
+
+
+Поля моделей и их типы:
+Основные типы полей:
+CharField - используется для хранения небольших строковых данных(максимальная
+длина указывается с помощью параметра max_length)
+TextField - используется для хранения длиннных текстовых значений
+IntegerField - используется для хранения целых чисел
+FloatField - используется для хранения чисел с плавающей точкой
+BooleanField - используется для хранения булевых значений
+DateField и DateTimeField используется для хранения дат и времени
+ForeignKey - используется для создания связей один-ко-многим
+ManyToManyField - используется для создания связей многие-ко-многим
+OneToOneField - используется для создания связей один-к-одному
+
+ForeignKey:
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+class Tasks(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_completed = models.BooleanField(default=False)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+OneToOne:
+from django.contrib.auth.models import User
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField()
+
+ManyToManyField:
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+
+class Course(models.Model):
+    title = models.CharField(max_length=200)
+    students = models.ManyToManyField(Student)
+
+Метаданные - это вложенный класс Meta, который используется для изменения
+поведения модели, например, для указания порядка сортировки
+class Tasks(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_completed = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-сreated_at']
+        verbose_name = 'Задача'
+        verbose_name_plural = "Задачи"
+
+
+
+    1  св
+    2  cd
+    3  /&\?
+    4  ?
+    5  help
+    6  apt update && sudo apt upgrade -y
+    7  python3.10 --version
+    8  help
+    9  lsusb
+   10  lspci | grep «Network»
+   11  шцсщташп
+   12  iwconfig
+   13  lspci | grep «Network»
+   14  sudo iwconfig
+   15  sudo iwconfig
+   16  sudo iwlist scanning
+   17  sudo airmon-ng check
+   18  sudo stop network-manager
+   19  sudo stop avahi-daemon
+   20  sudo killall wpa_supplicant
+   21  sudo airmon-ng start wlan0
+   22  sudo apt install glances
+   23  sudo apt update
+   24  sudo apt install postgresql postgresql-contrib
+   25  sudo -i -u postgres
+   26  psql
+   27  sudo -u postgres psql
+   28  sudo -i -u postgres
+   29  sudo apt install postgresql postgresql-contrib
+   30  sudo apt install postgresql postgresql-contrib~
+   31  sudo apt install postgresql postgresql-contrib
+   32  sudo -i -u postgres
+   33  /bin/python3 /home/aristarh/.vscode/extensions/ms-python.python-2024.8.0/python_files/printEnvVariablesToFile.py /home/aristarh/.vscode/extensions/ms-python.python-2024.8.0/python_files/deactivate/bash/envVars.txt
+   34  /bin/python3 "/home/aristarh/Рабочий стол/PYTHON FILES/lambda_les.py"
+   35  "/home/aristarh/Рабочий стол/PYTHON FILES/.venv/bin/python" "/home/aristarh/Рабочий стол/PYTHON FILES/lambda_les.py"
+   36  python version
+   37  python-version
+   38  pip install python
+   39  sudo apt install python3-pip
+   40  cd todo_list_124
+   41  python manage.py runserver
+   42  python3 manage.py runserver
+   43  pip list
+   44  /bin/python3 /home/aristarh/.vscode/extensions/ms-python.python-2024.8.0/python_files/printEnvVariablesToFile.py /home/aristarh/.vscode/extensions/ms-python.python-2024.8.0/python_files/deactivate/bash/envVars.txt
+   45  python manage.py runserver
+   46  python3 manage.py runserver
+   47  ls -la
+   48  python -m venv venv
+   49  python3 -m venv venv
+   50  apt install python3.10-venv
+   51  sudo apt install python3.10-venv
+   52  python3 -m venv venv
+   53  source venv/bin/activate
+   54  ды
+   55  ls
+   56  они позволяют легко со
+   57  pip list
+   58  pips install django
+   59  pips install psycopg2-binary
+   60  pip install djangorestframework
+   61  pip reeze req.txt
+   62  pip freeze req.txt
+   63  django admin startproject
+   64  django-admin startproject blog_ada
+   65  django-admin startproject blog_ada .
+   66  pip install decouple
+   67  pip uninstall decouple
+   68  pip install python-decouple
+   69  touch .env
+   70  pip freeze req.txt
+   71  psql
+   72  psql
+   73  python manage.py runserver
+   74  ppython manage.py startapp post
+   75  python manage.py startapp post
+   76  python manage.py startapp category
+   77  python manage.py makemigrations
+   78  python manage.py makemigrate
+   79  python manage.py runserver
+   80  python manage.py y makemigrate
+   81  python manage.py y migrate
+   82  python manage.py migrate
+   83  python manage.py runserver
+   84  python manage.py rucreatesuperuser admin
+   85  python manage.py createsuperuser admin
+   86  python manage.py createsuperuser
+   87  python manage.py runserver
+   88  python manage.py migrate
+   89  pip install psycopg2-binary
+   90  python manage.py migrate
+   91  sudo -u postgres psql
+   92  python manage.py runserver
+   93  pip install pillow
+   94  python manage.py makemigration
+   95  python manage.py makemigrations
+   96  python manage.py migrate
+   97  python manage.py runserver
+   98  ls
+   99  cd block+124
+  100  cd block_124
+  101  python manage.py runserver
+  102  cd..
+  103  cd.
+  104  python
+  105  cd pythonProject1
+  106  cd..
+  107  cd.
+  108  cd..
+  109  ..cd
+  110  cd..
+  111  cd ..
+  112  python manage.py startapp books
+  113  python3 manage.py startapp books
+  114  ls
+  115  cd pythonProject1/
+  116  ls
+  117  python3 manage.py startapp books
+  118  python manage.py makemigration
+  119  python manage.py makemigrations
+  120  python manage.py migrate
+  121  python manage.py runserver
+  122  sencors
+  123  sencor
+  124  sencor
+  125  sencors
+  126  python manage.py createsuperuser
+  127  python3 manage.py createsuperuser
+  128  python manage.py runserver
+  129  python3 manage.py createsuperuser
+  130  python manage.py createsuperuser
+  131  ls
+  132  cd pythonProject1
+  133  ls
+  134  python manage.py createsuperuser
+  135  python manage.py runserver
+  136  python manage.py startapp like
+  137  python manage.py makemigrations
+  138  python manage.py migrate
+  139  python manage.py runserver
+  140  ls
+  141  sensors
+  142  pip freeze req.txt
+  143  python manage.py runserver
+  144  python manage.py migrate
+  145  history

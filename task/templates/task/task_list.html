@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task list</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 5px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .add-task-btn {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Task List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Created at</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Check</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+               <tr>
+                    <th><a href="{{ task.get_absolute_url }}">{{ task.title }}</a></th>
+                    <th>{{ task.description }}</th>
+                    <th>{{ task.created_at }}</th>
+                    <th>{{ task.category.name }}</th>
+                    <th>{{ task.is_completed }}</th>
+                    <th>
+                        {% if not task.is_completed %}
+                        <a href="{% url 'completed_task' task.id %}">⏳</a>
+                        {% else %}
+                        ✅
+                        {% endif %}
+                    </th>
+               </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button class="add-task-btn" onclick="location.href='{% url 'add_task' %}'">Add task</button>
+</body>
+</html>
